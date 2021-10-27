@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- base Definition -->
+	<definition name="bg"
+		template="/template/defaulttemplate.jsp">
+		<put-attribute name="header"
+			value="/template/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="js" value="" />
+		<put-attribute name="footer"
+			value="/template/footder.jsp" />
+	</definition>
+	<!-- homepage -->
+	<definition name="home" extends="bg">
+		<put-attribute name="body"
+			value="/WEB-INF/views/trangchu.jsp" />
+	</definition>
+	<!-- trang chi tiet -->
+
+	<definition extends="bg" name="chitiet">
+		<put-attribute name="body"
+			value="/WEB-INF/views/trangchitiet.jsp" />
+	</definition>
+	
+	<definition extends="bg" name="giohang">
+		<put-attribute name="body" value="/WEB-INF/views/tranggiohang.jsp" />
+		<put-attribute name="js" value="/js/giohangjs.jsp" />
+	</definition>
+
+
+	<!-- trang 404 -->
+	<definition name="trang404" template="/404.jsp">
+	</definition>
+</tiles-definitions>

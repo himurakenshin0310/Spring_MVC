@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="qlbansua" match-name="ct_hoadon"/>
+  <table-filter match-catalog="qlbansua" match-name="hang_sua"/>
+  <table-filter match-catalog="qlbansua" match-name="hoa_don"/>
+  <table-filter match-catalog="qlbansua" match-name="khach_hang"/>
+  <table-filter match-catalog="qlbansua" match-name="loai_sua"/>
+  <table-filter match-catalog="qlbansua" match-name="sua"/>
+  <table-filter match-catalog="qlbansua" match-name="veryfication_email"/>
+</hibernate-reverse-engineering>

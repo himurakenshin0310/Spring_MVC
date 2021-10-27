@@ -1,0 +1,176 @@
+@charset "UTF-8";
+.cartTitle {
+	font-size: 18px;
+	height: auto;
+	width: auto;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.spanDonGia {
+	color: red;
+	font-size: 16px;
+	word-wrap: break-word;
+}
+
+body {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	background-image: url("${pageContext.request.contextPath}/images/125752111-light-gradient-abstract-background-for-website-pattern-banner-or-poster-vector-illustration.jpg");
+	background-position: center;
+	background-size: cover;
+}
+
+#overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: hsl(190deg 57% 7%/ 52%);
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+#content {
+	position: absolute;
+	top: 30%;
+	left: 45%;
+	cursor: pointer;
+	trasform: translate(-50%, -50%);
+	border: 2px solid red;
+	padding: 10px;
+	border-radius: 50px 20px;
+	background-color: white;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  border-bottom: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-overlay {
+	background-color: #9e9e9e1a;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	display: none;
+	position: fixed;
+	cursor: pointer;
+}
+
+.loader-content {
+	position: absolute;
+	left: 47%;
+	top: 30%;
+}
+
+.full-screen{
+background-color: #9e9e9e1a;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	display: none;
+	position: fixed;
+	cursor: pointer;
+}
+.content-screen{
+	position: absolute;
+	left: 47%;
+	top: 30%;
+}
+
+.thongBao{
+background-color: #9e9e9e1a;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	display: none;
+	position: fixed;
+	cursor: pointer;
+}
+.thongBao-content{
+	position: absolute;
+	width: 20%;
+	height: 30%;
+	background-color:white;
+	left: 40%;
+	top: 30%;
+	border-radius: 10%;
+}
+.img-thongBao{
+	color: red;
+	margin-left: 40%;
+	margin-top: 20%;
+}
+
+
+@media screen and (max-width: 768px) {
+	#content {
+		position: absolute;
+		top: 30%;
+		left: 15%;
+		cursor: pointer;
+		trasform: translate(-50%, -50%);
+		background-color: white;
+		border: 2px solid red;
+		padding: 10px;
+		border-radius: 50px 20px;
+		padding: 10px;
+	}
+	
+	.loader-content {
+		position: absolute;
+		left: 35%;
+		top: 30%;
+	}
+	.content-screen{
+		position: absolute;
+		left: 35%;
+		top: 30%;
+	}
+	
+	.thongBao-content{
+		position: absolute;
+		width: 40%;
+		height: 22%;
+		background-color:white;
+		left: 32%;
+		top: 30%;
+		border-radius: 10%;
+	}
+	.img-thongBao{
+		color: red;
+		margin-left: 30%;
+		margin-top: 20%;
+	}
+}
