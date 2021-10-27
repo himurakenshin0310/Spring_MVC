@@ -3,8 +3,10 @@ package javabean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import bussinesLogic.SuaBL;
 import entity.Sua;
@@ -29,7 +31,7 @@ public class Cart implements Serializable {
 			dsh.replace(ma, dsh.get(ma) + slm);
 		return dsh;
 	}
-	
+
 	public void updateCart(String ma, int slm) {
 		dsh.replace(ma, dsh.get(ma) + slm);
 	}
@@ -38,19 +40,21 @@ public class Cart implements Serializable {
 		dsh.remove(ma);
 	}
 
-	public List<Sua> danhSachMua() {
-		List<Sua> dsm = new ArrayList<Sua>();
+	public List<SuaMua> danhSachMua() {
+		List<SuaMua> ds = new ArrayList<SuaMua>();
 		for (String s : dsh.keySet()) {
-			Sua sua = SuaBL.docTheoMa(s);
-			dsm.add(sua);
+			SuaMua sua = new SuaMua();
+			sua.setSua(SuaBL.docTheoMa(s));
+			sua.setSlm(dsh.get(s));
+			ds.add(sua);
 		}
-		return dsm;
+		return ds;
 	}
 
 	public double tongTien() {
 		double tt = 0;
-		for (Sua s : danhSachMua()) {
-			tt += s.getDonGia();
+		for (SuaMua s : danhSachMua()) {
+			tt += s.getSlm() * s.getSua().getDonGia();
 		}
 		return tt + tax;
 	}

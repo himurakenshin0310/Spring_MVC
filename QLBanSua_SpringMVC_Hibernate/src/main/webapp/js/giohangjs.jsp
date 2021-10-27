@@ -8,7 +8,7 @@
 <script>
 	setTimeout(function() {
 		if ($("#thongbao") != null) {
-			$(this).css("display","none");
+			$("#thongbao").css("display","none");
 			<c:remove var="kq" scope="session" />
 		}
 	}, 3000);
@@ -27,11 +27,11 @@
 			});
 			if (checked != null) {
 				$.ajax({
-					url : "XoaGioHang",
+					url : "XoaGioHang.html",
 					type : "POST",
-					dataType : "JSON",
 					data : {
-						id : checked
+						id : checked,
+						test:"value"
 					},
 					beforeSend : function() {
 						isBussy = true;
@@ -40,7 +40,7 @@
 					$.each(checked, function(index, item) {
 						$("#" + item).css("display", "none");
 					});
-					$("#tongTien").html(result.tongTien);
+					$("#tongTien").html(result.tongTien+" ₫");
 					isBussy = false;
 				});
 			}

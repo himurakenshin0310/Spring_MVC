@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<fmt:setLocale value="vi_VN" />
+<fmt:setLocale value="vi_VN" scope="session" />
 <style>
 #thongbao {
 	position: relative;
@@ -64,48 +64,48 @@ th, td {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${sessionScope.gioHang.danhSachMua() }"
+			<c:forEach items="${sessionScope.gioHang.danhSachMua()}"
 				var="sua" varStatus="count">
-				<tr id="${sua.maSua }">
+				<tr id="${sua.sua.maSua }">
 					<td class="ten"><img class="hinh"
-						src="${pageContext.request.contextPath }/images/${sua.hinh}"><span>${sua.tenSua }</span></td>
+						src="${pageContext.request.contextPath }/images/${sua.sua.hinh}"><span>${sua.sua.tenSua }</span></td>
 					<td>
 						<div class="input-group">
 							<span>
-								<button id="decrease-${sua.maSua }"
-									onclick="decrease('${sua.maSua}')" type="button"
+								<button id="decrease-${sua.sua.maSua }"
+									onclick="decrease('${sua.sua.maSua}')" type="button"
 									class="btn btn-danger btn-number">
 									<span><i class="fas fa-minus"></i></span>
 								</button>
-							</span> <input id="quantity-${sua.maSua}"
-								onchange="change('${sua.maSua }')" type="number"
-								class="form-control input-number" value=""
+							</span> <input id="quantity-${sua.sua.maSua}"
+								onchange="change('${sua.sua.maSua }')" type="number"
+								class="form-control input-number" value="${sua.slm }"
 								min="1" max="10"> <span>
-								<button onclick="increase('${sua.maSua}')"
-									id="increase-${sua.maSua }" type="button"
+								<button onclick="increase('${sua.sua.maSua}')"
+									id="increase-${sua.sua.maSua }" type="button"
 									class="btn btn-success btn-number">
 									<span><i class="fas fa-plus"></i></span>
 								</button>
 							</span>
 						</div>
 					</td>
-					<td><fmt:formatNumber type="currency" value="${sua.donGia }" />
+					<td><fmt:formatNumber type="currency" value="${sua.sua.donGia }" />
 					</td>
 					<td class="thanhTien-${count.index }"><fmt:formatNumber
-							type="currency" value="${sua.donGia }" /></td>
-					<td><input type="checkbox" value="${sua.maSua }" style="height: 30px; width: 20px;"
+							type="currency" value="${sua.sua.donGia * sua.slm }" /></td>
+					<td><input type="checkbox" value="${sua.sua.maSua }" style="height: 30px; width: 20px;"
 						name="chon"></td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td class="tongTien" colspan="4">Phí ship (tạm tính):</td>
 				<td colspan="2" class="tongTien"><fmt:formatNumber
-						type="currency" value="19000" /></td>
+						type="currency" value="${sessionScope.gioHang.tax() }" /></td>
 			</tr>
 			<tr>
 				<td class="tongTien" colspan="4">Tổng tiền:</td>
 				<fmt:formatNumber type="currency"
-					value="${sessionScope.gioHang.tongTien() + 19000 }" var="tongTien" />
+					value="${sessionScope.gioHang.tongTien()}" var="tongTien" />
 				<td id="tongTien" colspan="2" class="tongTien">${tongTien }</td>
 			</tr>
 		</tbody>

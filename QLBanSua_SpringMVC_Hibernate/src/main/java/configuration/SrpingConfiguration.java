@@ -13,6 +13,8 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
+import interceptor.CartInterceptor;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "controllers")
@@ -48,6 +50,6 @@ public class SrpingConfiguration implements WebMvcConfigurer {
 	//bo loc
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		
+		registry.addInterceptor(new CartInterceptor()).addPathPatterns("/TrangGioHang.html");
 	}
 }

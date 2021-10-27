@@ -77,9 +77,6 @@ public class SuaBL {
 	}
 
 //	public static void main(String[] args) {		
-//		Map<Long, Sua> ds = dsBanChay();
-//		for(long key : ds.keySet()) {
-//			System.out.println(ds.get(key).getTenSua());
-//		}
+//		
 //	}
 }

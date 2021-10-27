@@ -1,8 +1,12 @@
 package controllers;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.query.internal.NativeQueryReturnBuilderFetchImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,8 +40,8 @@ public class CartControllers {
 	}
 
 	@RequestMapping(path = "ThemVaoGioHang.html", method = RequestMethod.POST)
-	public String postAddCart(@RequestParam String id, @RequestParam int quantity, HttpServletRequest rq, Cart cart,
-			Model model) {
+	public String postAddCart(@RequestParam String id, @RequestParam int quantity, HttpServletRequest rq, Model model) {
+		Cart cart;
 		HttpSession session = rq.getSession();
 		if (session.getAttribute("gioHang") == null)
 			cart = new Cart();
@@ -53,5 +57,21 @@ public class CartControllers {
 	@RequestMapping(path = "TrangGioHang.html", method = RequestMethod.GET)
 	public String cartPage() {
 		return "giohang";
+	}
+
+	@RequestMapping(path = "XoaGioHang.html", method = RequestMethod.POST)
+	@ResponseBody
+	public JsonObject deleteCart(@RequestParam(value = "id[]") String[] id, HttpServletRequest rq) {
+		HttpSession session = rq.getSession();
+		Cart cart = (Cart) session.getAttribute("gioHang");
+		for (String s : id) {
+			cart.deleteCart(s);
+		}
+		JsonObject jsob = new JsonObject();
+		NumberFormat nf = NumberFormat.getInstance(new Locale("vi", "VN"));
+		if(cart.tongSpMua() == 0)
+			session.removeAttribute("gioHang");
+		jsob.addProperty("tongTien", nf.format(cart.tongTien()));
+		return jsob;
 	}
 }
