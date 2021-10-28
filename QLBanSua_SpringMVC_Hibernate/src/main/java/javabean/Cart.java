@@ -1,6 +1,7 @@
 package javabean;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
@@ -33,7 +34,7 @@ public class Cart implements Serializable {
 	}
 
 	public void updateCart(String ma, int slm) {
-		dsh.replace(ma, dsh.get(ma) + slm);
+		dsh.replace(ma, slm);
 	}
 
 	public void deleteCart(String ma) {
@@ -61,5 +62,14 @@ public class Cart implements Serializable {
 
 	public int tongSpMua() {
 		return dsh.size();
+	}
+	
+	public List<Double> thanhTien() {
+		List<Double> ds = new ArrayList<>();
+		
+		for(SuaMua s : danhSachMua()) {
+			ds.add((double) (s.getSua().getDonGia()*s.getSlm()));
+		}
+		return ds;
 	}
 }

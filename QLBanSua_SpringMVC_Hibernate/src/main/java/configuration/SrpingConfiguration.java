@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import interceptor.CartInterceptor;
+import interceptor.UpdateCart;
 
 @Configuration
 @EnableWebMvc
@@ -51,5 +52,6 @@ public class SrpingConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new CartInterceptor()).addPathPatterns("/TrangGioHang.html");
+		registry.addInterceptor(new UpdateCart()).addPathPatterns("/CapNhatGioHang.html");
 	}
 }

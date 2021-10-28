@@ -1,15 +1,17 @@
 package controllers;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.query.internal.NativeQueryReturnBuilderFetchImpl;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,6 +74,25 @@ public class CartControllers {
 		if(cart.tongSpMua() == 0)
 			session.removeAttribute("gioHang");
 		jsob.addProperty("tongTien", nf.format(cart.tongTien()));
+		jsob.addProperty("soLuongMua", cart.tongSpMua());
+		return jsob;
+	}
+	
+	@RequestMapping(path = "CapNhatGioHang.html", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject updateCart(@RequestParam String id, @RequestParam(value = "quantity") int qty, HttpServletRequest rq) {
+		JSONObject jsob = new JSONObject();
+		HttpSession session = rq.getSession();
+		Cart cart = (Cart) session.getAttribute("gioHang");
+		cart.updateCart(id, qty);
+		NumberFormat nfm = NumberFormat.getInstance(new Locale("vi","VN"));
+		List<String> thanhTien = new ArrayList<>();
+		for(double s : cart.thanhTien()) {
+			thanhTien.add(nfm.format(s));
+		}
+//		thanhTien.forEach(s -> System.out.println(s));
+		jsob.put("thanhTien", thanhTien);
+		jsob.put("tongTien", nfm.format(cart.tongTien())+" ₫");
 		return jsob;
 	}
 }

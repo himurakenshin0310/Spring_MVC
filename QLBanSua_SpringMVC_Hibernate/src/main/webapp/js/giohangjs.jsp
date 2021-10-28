@@ -41,6 +41,7 @@
 						$("#" + item).css("display", "none");
 					});
 					$("#tongTien").html(result.tongTien+" ₫");
+					$("#soLuongMua").html(result.soLuongMua);
 					isBussy = false;
 				});
 			}
@@ -94,10 +95,12 @@
 				if(value > 10){
 					alert("Số lượng tối đa là 10!");
 					$("#quantity-" + id).val(10);
+					$("#quantity-" + id).change();
 				}
 				else{
 					alert("Số lượng không hợp lệ!");
 					$("#quantity-" + id).val(1);
+					$("#quantity-" + id).change();
 				}
 			}
 	}
@@ -107,8 +110,8 @@
 			return;
 		$(document).ready(function() {
 			$.ajax({
-				url : "CapNhatGiohang.html",
-				type : "GET",
+				url : "CapNhatGioHang.html",
+				type : "get",
 				data : {
 					id : id,
 					quantity : quantity
@@ -118,10 +121,12 @@
 				},
 				success : function(result) {
 					$.each(result.thanhTien, function(index, item) {
-						$(".thanhTien-" + index).text(item);
+						$(".thanhTien-" + index).text(item + " ₫");
 					})
 
 					$("#tongTien").text(result.tongTien);
+					if(result.kq)
+						alert(result.kq);
 				}
 			}).fail(function(jqXHR, textStatus, errorThrown) {
 				// If fail
