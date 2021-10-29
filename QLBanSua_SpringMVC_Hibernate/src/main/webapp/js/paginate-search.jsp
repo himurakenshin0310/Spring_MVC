@@ -38,7 +38,7 @@ var currentPage = 1;
 		if (page == 1)
 			$(".item").remove();
 		$.ajax({
-			url : "TrangTimKiem.html",
+			url : "timkiem.html",
 			type : "GET",
 			data : {
 				key : keyword,

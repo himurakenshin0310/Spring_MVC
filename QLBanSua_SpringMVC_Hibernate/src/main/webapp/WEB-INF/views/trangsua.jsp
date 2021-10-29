@@ -83,29 +83,45 @@
 </div>
 
 <script>
+	
+	$(window).scroll(function() {
+		if($(this).width() > 750){
+			if(($(document).height()- $(this).height() - 250) <= $(this).scrollTop())
+				$("#xemThem").click();
+		}else{
+			if(($(document).height() - ($(this).scrollTop()/3)) <= $(this).scrollTop())
+				$("#xemThem").click();
+		}
+	});
+	
+
+
 	var page = 1;
 	var isBussy = false;
-	$("#xemThem").click(function() {
-		$("#xemThem").text("Loading...");
-		$.ajax({
-			URL: "TrangSanPhamSua.html",
-			type: "post",
-			data: {
-				page : ++page
-			},
-			beforeSend: function() {
-				isBussy = true;
-			}
-		}).done(function(result) {
-			var data = "";
-			$.each(result.data, function(index,item) {
-				data += item;
+	$(document).ready(function () {
+		$("#xemThem").click(function() {
+			$("#xemThem").text("Loading...");
+			$.ajax({
+				URL: "TrangSanPhamSua.html",
+				type: "post",
+				data: {
+					page : ++page
+				},
+				beforeSend: function() {
+					isBussy = true;
+				}
+			}).done(function(result) {
+				var data = "";
+				$.each(result.data, function(index,item) {
+					data += item;
+				});
+				$("#main").append(data);
+				isBussy = false;
+				$("#xemThem").text("Xem thêm");
+				if(result.full == 1)
+					$("#xemThem").css("display","none");	
 			});
-			$("#main").append(data);
-			isBussy = false;
-			$("#xemThem").text("Xem thêm");
-			if(result.full == 1)
-				$("#xemThem").css("display","none");	
 		});
-	})
+	});
+	
 </script>

@@ -34,6 +34,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/trangsua.jsp" />
 		<put-attribute name="js" value="/js/paginate.jsp" />
 	</definition>
+	
+	<definition extends="bg" name="timkiem">
+		<put-attribute name="body" value="/WEB-INF/views/trangtimkiem.jsp" />
+		<put-attribute name="js" value="/js/paginate-search.jsp" />
+	</definition>
 
 
 	<!-- trang 404 -->
