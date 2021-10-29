@@ -29,6 +29,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/tranggiohang.jsp" />
 		<put-attribute name="js" value="/js/giohangjs.jsp" />
 	</definition>
+	
+	<definition extends="bg" name="trangsua">
+		<put-attribute name="body" value="/WEB-INF/views/trangsua.jsp" />
+		<put-attribute name="js" value="/js/paginate.jsp" />
+	</definition>
 
 
 	<!-- trang 404 -->
